@@ -2,8 +2,8 @@
 name: cloudflare安全代理
 author: eray
 version: v1.0
-blog: blog.eray.cc
-email: admin#eray.cc
+blog: blog.yingzi.ee
+email: admin#yingzi.ee
 
 desp: 本项目可以给cf代理设置一个密码，使代理更安全，调用更方便
 
@@ -31,12 +31,12 @@ async function handleRequest(request) {
 	const url = new URL(request.url);
 
 	// Check if some api direct browse, the path should be hard to guess, u can comment it out if you don't need it
-	if (url.pathname.includes('/your-safe-api-prefix/')) {
+	if (url.pathname.includes('/cf-safe-api/')) {
 		return handleApiRequest(request);
 	}
 
 	// Check if the request is for password verification
-	if (url.pathname === '/your-pwd-verify-path' && request.method === 'POST') {
+	if (url.pathname === '/cf-proxy-auth-7788' && request.method === 'POST') {
 		const password = await request.text();
 		if (verifyPassword(password)) {
 			return new Response('success', {
@@ -332,5 +332,5 @@ function createLandingPage() {
 // Verify the password function
 function verifyPassword(savedPassword) {
 	// Replace this logic with your actual password verification
-	return savedPassword === "your-access-pwd";
+	return savedPassword === "MyCfProxy@2026";
 }
