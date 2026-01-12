@@ -31,10 +31,11 @@ async function handleRequest(request) {
 	const url = new URL(request.url);
 
 	// Check if some api direct browse, the path should be hard to guess, u can comment it out if you don't need it
+	/*
 	if (url.pathname.includes('/cf-safe-api/')) {
 		return handleApiRequest(request);
 	}
-
+*/
 	// Check if the request is for password verification
 	if (url.pathname === '/cf-proxy-auth-7788' && request.method === 'POST') {
 		const password = await request.text();
